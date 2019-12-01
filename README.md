@@ -14,7 +14,7 @@ Hi there. You're the luckiest of the bunch at the moment - given that Overlayed 
 
 ## For VFX Artists
 
-Hello! We don't quite have the tooling for you in place just yet, I'm afraid - but we're working on it. Check back soon to see how you can get started. If you've got ideas, please [let us know](https://github.com/bengreenier/overlayed2/issues/new). Thanks for understanding. 💙🌈
+Hello! We don't quite have the tooling for you in place just yet, I'm afraid - but we're working on it. Check back soon to see how you can get started. If you've got ideas, please [let us know](https://github.com/bengreenier/overlayed2/issues/new?assignees=&labels=enhancement&template=feature_request.md). Thanks for understanding. 💙🌈
 
 ## For Broadcasters
 
