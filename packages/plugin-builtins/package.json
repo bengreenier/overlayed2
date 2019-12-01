@@ -1,0 +1,51 @@
+{
+  "name": "@overlayed2/plugin-builtins",
+  "version": "1.0.0",
+  "description": "the builtin plugins for overlayed2",
+  "keywords": [
+    "overlayed",
+    "overlayed2",
+    "plugins",
+    "builtins"
+  ],
+  "author": "bengreenier <ben@bengreenier.com>",
+  "homepage": "https://overlayed.app",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "scripts": {
+    "watch": "tsc -p . -w",
+    "build": "tsc -p .",
+    "prepare": "npm run build",
+    "test": "jest --coverage --passWithNoTests",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.23",
+    "@typescript-eslint/eslint-plugin": "^2.9.0",
+    "@typescript-eslint/parser": "^2.9.0",
+    "eslint": "^6.7.2",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.17.0",
+    "eslint-plugin-standard": "^4.0.1",
+    "jest": "^24.9.0",
+    "parcel": "^1.12.4",
+    "ts-jest": "^24.2.0",
+    "typescript": "^3.7.2"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "coverageReporters": [
+      "lcov",
+      "text"
+    ],
+    "testRegex": [
+      "(/__tests__/.*|(\\.|/)spec)\\.ts[x]?$"
+    ]
+  },
+  "dependencies": {
+    "react": "^16.12.0"
+  }
+}

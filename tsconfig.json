@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "module": "commonjs",
+    "target": "es5",
+    "esModuleInterop": true,
+    "declaration": true,
+    "baseUrl": "./packages",
+    "paths": {
+      "@overlayed2/plugin-builtins": ["plugin-builtins/src"],
+      "@overlayed2/plugin-core": ["plugin-core/src"],
+      "@overlayed2/ux-core": ["ux-core/src"]
+    }
+  },
+  "exclude": ["node_modules", "dist"]
+}
