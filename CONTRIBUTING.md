@@ -81,6 +81,36 @@ To run electron in development mode (including watch support):
 npm start --electron
 ```
 
+### My flow
+
+When I'm working locally, here's exactly what I do.
+
+```
+# In the project directory (ie: overlayed2)
+# Start my editor
+code .
+
+# Start the browser runtime
+# Note the url that's output from this command (probably http://localhost:1234)
+# Open the url in a browser (not currently automated)
+npm start --browser
+```
+
+Then, in my editor terminal session (could technically be any other shell session):
+
+```
+# Determine the package you want to work on
+# Let's say ux-core in this case
+cd packages/ux-core
+
+# Start the package watcher
+npm run watch
+
+# edit code in that package
+# runtime-browser will auto-update (hmr-refresh) components
+# Side-by-side the editor and the browser if you like
+```
+
 ## Repository Management
 
 The [overlayed2 repo](https://github.com/bengreenier/overlayed2) is the home to all the project management stuff, including roadmaps, pull-requests, and issues. If you can't find something that you feel you need as part of the development process, please [open an issue](https://github.com/bengreenier/overlayed2/issues/new).

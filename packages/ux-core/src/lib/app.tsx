@@ -1,11 +1,15 @@
 import React from 'react'
+import Grid from './layout/grid'
+import DisplayManagedNode from './layout/display-managed-node'
 
 export default class App extends React.Component {
   render() {
     return (
-      <div>
-        <p>overlayed2 ux-core app</p>
-      </div>
+      <Grid initialSize={10} scaleBy={10} maxScale={250} minScale={1}>
+        <DisplayManagedNode>
+          <p>Hello world</p>
+        </DisplayManagedNode>
+      </Grid>
     )
   }
 }
