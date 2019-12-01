@@ -124,7 +124,9 @@ In the description field of the pull request, please reference any issues you're
 ```
 Feature: Improve plugin loader performance
 
-Previously, the plugin loader was using `fs.existsSync()` many times throughout a single run. We've modified this pattern to now do the existence check once at the start, greatly improving performance.
+Previously, the plugin loader was using `fs.existsSync()` many times throughout a single run.
+We've modified this pattern to now do the existence check once at the start,
+greatly improving performance.
 
 This change includes:
 
@@ -147,7 +149,8 @@ The body of a bug should contain a brief description of the issue, the steps to 
 ```
 Bug: App immediately crashes on OSX Catalina
 
-When I try to launch the app on my Mac, it crashes immediately with the following message: "Unable to load native module: libimportant.so".
+When I try to launch the app on my Mac, it crashes immediately with the following message:
+"Unable to load native module: libimportant.so".
 
 I'm running OSX Catalina 10.15, and am trying to use version 1.23.3 of the electron app.
 ```
@@ -159,7 +162,10 @@ The body of a feature request should contain a brief description of the desired 
 ```
 Feature Request: Surfbar progress bars
 
-As a developer, I'd like to see all loading progress bars in the command line interface replaced with surfbar progress bars - you know, the ones with 🏄‍♀️ instead of `#`. I think this would create a better developer experience and reduce the burden of waiting for things to load, as now there's entertainment while you wait.
+As a developer, I'd like to see all loading progress bars in the command line interface
+replaced with surfbar progress bars - you know, the ones with 🏄‍♀️ instead of `#`. I think
+this would create a better developer experience and reduce the burden of waiting for
+things to load, as now there's entertainment while you wait.
 ```
 
 ## Thank you
