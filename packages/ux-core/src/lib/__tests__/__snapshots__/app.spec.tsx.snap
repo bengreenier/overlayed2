@@ -1,9 +1,53 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`app should render 1`] = `
-<div>
-  <p>
-    overlayed2 ux-core app
-  </p>
+<div
+  style={
+    Object {
+      "background": "repeating-linear-gradient(to right, transparent, transparent 9px, #CCC 9px, #CCC 10px),
+      repeating-linear-gradient(to bottom, transparent, transparent 9px, #CCC 9px, #CCC 10px) repeat scroll right bottom",
+      "height": "100%",
+      "left": 0,
+      "margin": "0 0 0 0",
+      "padding": "0 0 0 0",
+      "position": "absolute",
+      "top": 0,
+      "width": "100%",
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "backgroundColor": "rgba(255,255,255, 0.6)",
+        "borderRadius": "4px",
+        "display": "inline-block",
+        "left": "0px",
+        "overflow": "auto",
+        "padding": "10px 10px 10px 10px",
+        "position": "inherit",
+        "resize": "both",
+        "top": "0px",
+      }
+    }
+  >
+    <div
+      onMouseDown={[Function]}
+      style={
+        Object {
+          "backgroundColor": "rgba(0,255, 0, 0.6)",
+          "cursor": "grab",
+          "display": "flex",
+          "height": "inherit",
+          "userSelect": "none",
+          "width": "inherit",
+        }
+      }
+    >
+      <p>
+        Hello world
+      </p>
+    </div>
+  </div>
 </div>
 `;
