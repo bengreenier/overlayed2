@@ -1,0 +1,25 @@
+{
+  "name": "@overlayed2/game-quotes",
+  "version": "1.0.0",
+  "description": "awesome quotes from videogames",
+  "author": "bengreenier <ben@bengreenier.com>",
+  "homepage": "https://github.com/bengreenier/overlayed2#readme",
+  "license": "MIT",
+  "main": "lib/game-quotes.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bengreenier/overlayed2.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/bengreenier/overlayed2/issues"
+  }
+}
