@@ -1,0 +1,50 @@
+{
+  "name": "xp-core",
+  "version": "1.0.0",
+  "description": "xp core",
+  "author": "bengreenier <ben@bengreenier.com>",
+  "homepage": "https://github.com/bengreenier/overlayed2#readme",
+  "license": "MIT",
+  "main": "lib/xp-core.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bengreenier/overlayed2.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "bugs": {
+    "url": "https://github.com/bengreenier/overlayed2/issues"
+  },
+  "dependencies": {
+    "@openfonts/poppins_all": "^1.44.0",
+    "grommet": "^2.8.1",
+    "grommet-icons": "^4.4.0",
+    "md5": "^2.2.1",
+    "react": "^16.12.0",
+    "react-lottie": "^1.2.3",
+    "styled-components": "^4.4.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.4",
+    "@babel/plugin-proposal-decorators": "^7.7.4",
+    "@storybook/addon-actions": "^5.2.8",
+    "@storybook/addon-docs": "^5.2.8",
+    "@storybook/addon-knobs": "^5.2.8",
+    "@storybook/addon-links": "^5.2.8",
+    "@storybook/addons": "^5.2.8",
+    "@storybook/react": "^5.2.8",
+    "babel-loader": "^8.0.6",
+    "eslint": "^6.7.2",
+    "eslint-plugin-react": "^7.17.0"
+  }
+}
