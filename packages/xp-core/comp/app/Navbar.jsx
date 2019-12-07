@@ -7,18 +7,13 @@ import { Avatar } from './Avatar'
  * Render a navbar across the top of the page
  */
 export const Navbar = props => (
-  <Box
-    background="light-4"
-    pad="small"
-    direction="row-reverse"
-    gap="xsmall"
-    align="center"
-    {...props}
-  >
-    <Avatar email="ben@bengreenier.com" />
-    {props.links.map((l, i) => (
-      <Anchor key={i} label={l.label} href={l.href} />
-    ))}
+  <Box {...props}>
+    <Box direction="row-reverse" align="center" gap="xsmall">
+      <Avatar email="ben@bengreenier.com" />
+      {props.links.map((l, i) => (
+        <Anchor key={i} label={l.label} href={l.href} />
+      ))}
+    </Box>
   </Box>
 )
 
