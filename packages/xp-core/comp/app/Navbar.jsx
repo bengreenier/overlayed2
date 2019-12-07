@@ -1,31 +1,15 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { Anchor, Box } from 'grommet'
-import { Avatar } from './Avatar'
+import { useAuth } from './Auth'
+import { Box, Button } from 'grommet'
 
-/**
- * Render a navbar across the top of the page
- */
-export const Navbar = props => (
-  <Box {...props}>
-    <Box direction="row-reverse" align="center" gap="xsmall">
-      <Avatar email="ben@bengreenier.com" />
-      {props.links.map((l, i) => (
-        <Anchor key={i} label={l.label} href={l.href} />
-      ))}
+export const Navbar = () => {
+  const { isAuthenticated, loginWithRedirect, logout } = useAuth()
+
+  return (
+    <Box>
+      {!isAuthenticated && <Button onClick={() => loginWithRedirect({})}>Log in</Button>}
+
+      {isAuthenticated && <Button onClick={() => logout()}>Log out</Button>}
     </Box>
-  </Box>
-)
-
-Navbar.propTypes = {
-  /**
-   * Array of objects describing links and locations
-   *
-   * @example {label: 'my label', href: '#'}
-   */
-  links: PropTypes.arrayOf(PropTypes.object),
-}
-
-Navbar.defaultProps = {
-  links: [],
+  )
 }

@@ -1,9 +1,9 @@
 import React from 'react'
-import Base from './Base'
+import Base, { propTypes } from './Base'
 
 export const EditingFemale = props => <Base animation={animData} {...props} />
 
-EditingFemale.propTypes = Base.propTypes
+EditingFemale.propTypes = propTypes
 
 const animData = {
   v: '5.2.1',

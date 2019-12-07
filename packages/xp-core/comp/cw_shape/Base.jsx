@@ -27,8 +27,7 @@ export default class BaseShape extends React.Component {
   }
 }
 
-BaseShape.propTypes = {
-  animation: PropTypes.object.isRequired,
+export const propTypes = {
   shape: PropTypes.shape({
     loop: PropTypes.bool,
     autoplay: PropTypes.bool,
@@ -40,8 +39,13 @@ BaseShape.propTypes = {
     isClickToPauseDisabled: PropTypes.bool,
     title: PropTypes.string,
   }),
-  height: PropTypes.oneOf([PropTypes.number, PropTypes.string, PropTypes.object]),
-  width: PropTypes.oneOf([PropTypes.number, PropTypes.string, PropTypes.object]),
+  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.object]),
+  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.object]),
+}
+
+BaseShape.propTypes = {
+  ...propTypes,
+  animation: PropTypes.object.isRequired,
 }
 
 // default props below animData
