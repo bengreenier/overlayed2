@@ -7,7 +7,7 @@ import { theme } from '../../util/theme'
 import GridAlignedBox from './GridAlignedBox'
 
 const GridResizerElement: React.FC = () => {
-  const { shrink, grow } = useGrid()
+  const { shrink, grow, enabled } = useGrid()
 
   return (
     <GridAlignedBox
@@ -17,10 +17,10 @@ const GridResizerElement: React.FC = () => {
       align="center"
       direction="column"
     >
-      <Button onClick={grow}>
+      <Button onClick={grow} disabled={!enabled}>
         <AddCircleOutline fill={theme.global.colors.brand} />
       </Button>
-      <Button onClick={shrink}>
+      <Button onClick={shrink} disabled={!enabled}>
         <RemoveCircleOutline fill={theme.global.colors.brand} />
       </Button>
     </GridAlignedBox>

@@ -129,6 +129,10 @@ export default class GridView extends React.Component<InitialGridConfig, GridSta
       this.props.maxScale
     )
     const adjustSize = (v: number) => {
+      if (!this.props.enabled) {
+        return
+      }
+
       this.setState({
         currentSize: v,
       })
