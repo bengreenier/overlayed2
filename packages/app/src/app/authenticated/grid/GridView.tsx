@@ -8,6 +8,13 @@ import { Box } from 'grommet'
  */
 interface InitialGridConfig {
   /**
+   * Indicates if the grid itself should be enabled
+   *
+   * Note: this has no bearing on drawing children, they are always drawn
+   */
+  enabled: boolean
+
+  /**
    * The grid line color (css string)
    */
   color: string
@@ -48,19 +55,14 @@ interface InitialGridConfig {
 }
 
 /**
- * Mutable grid configuration values (mutated from {InitialGridConfig})
+ * Mutable grid session state
  */
-interface MutableGridConfig {
+export interface GridState {
   /**
    * The current grid size
    */
   currentSize: number
-}
 
-/**
- * Mutable grid session state
- */
-export interface GridState extends MutableGridConfig {
   /**
    * Grow the current grid state by the pre-configured amount
    */
@@ -72,11 +74,19 @@ export interface GridState extends MutableGridConfig {
   shrink: () => void
 }
 
+export interface GridContext extends GridState {
+  /**
+   * Is the grid enabled? Mapped from props
+   */
+  enabled: boolean
+}
+
 /**
  * Context for interacting with the current grid state
  */
-const GridStateContext = React.createContext<GridState>({
+const GridStateContext = React.createContext<GridContext>({
   currentSize: 10,
+  enabled: false,
   grow: () => {},
   shrink: () => {},
 })
@@ -142,15 +152,20 @@ export default class GridView extends React.Component<InitialGridConfig, GridSta
   }
 
   render() {
+    const style: React.CSSProperties = {}
+
+    if (this.props.enabled) {
+      // grid is currentSize - 1, with width of 1 to end with cells of currentSize
+      style.background = this.generateGrid(
+        this.state.currentSize - 1,
+        this.props.color,
+        1
+      )
+    }
+
     return (
-      <Box
-        fill={true}
-        style={{
-          // grid is currentSize - 1, with width of 1 to end with cells of currentSize
-          background: this.generateGrid(this.state.currentSize - 1, this.props.color, 1),
-        }}
-      >
-        <GridStateContext.Provider value={this.state}>
+      <Box fill={true} style={style}>
+        <GridStateContext.Provider value={{ ...this.state, enabled: this.props.enabled }}>
           {this.props.children}
         </GridStateContext.Provider>
       </Box>
@@ -179,6 +194,10 @@ export default class GridView extends React.Component<InitialGridConfig, GridSta
    * @param e event
    */
   private handleSystemKeyUp(e: KeyboardEvent): void {
+    if (!this.props.enabled) {
+      return
+    }
+
     const up = this.props.upKeyMatcher
     const down = this.props.downKeyMatcher
 

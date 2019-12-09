@@ -7,13 +7,20 @@ import { theme } from '../util/theme'
 import GridResizerElement from './grid/GridResizerElement'
 import ClockElement from './grid/ClockElement'
 import GridAlignedBox from './grid/GridAlignedBox'
+import Logo from './chrome/Logo'
+import BasicRemoteElement from './grid/BasicRemoteElement'
 
 const isMenuToggle = (e: React.KeyboardEvent<HTMLElement>) => {
+  return e.ctrlKey && !e.shiftKey
+}
+
+const isGridToggle = (e: React.KeyboardEvent<HTMLElement>) => {
   return e.ctrlKey && e.shiftKey
 }
 
 const CoreView: React.FC = () => {
   const [showMenu, setShowMenu] = useState<boolean>(false)
+  const [showGrid, setShowGrid] = useState<boolean>(false)
 
   const { user } = useAuth()
 
@@ -22,19 +29,24 @@ const CoreView: React.FC = () => {
       target="document"
       onSpace={e => {
         if (isMenuToggle(e)) setShowMenu(!showMenu)
+        if (isGridToggle(e)) setShowGrid(!showGrid)
       }}
     >
       <Box height="100vh" background="dark-1">
         <GridView
+          enabled={showGrid}
           initialSize={10}
           scaleBy={10}
           minScale={10}
           maxScale={100}
-          color={theme.global.colors['light-1'] as string}
+          color={theme.global.colors['dark-4'] as string}
         >
-          <GridAlignedBox>
-            <Text>Hello1</Text>
-          </GridAlignedBox>
+          <ClockElement />
+          <BasicRemoteElement
+            url="https://cdn.jsdelivr.net/gh/overlayed-app/remote-overlay-test@1.1.0/index.js"
+            innerProps={{ name: 'ben' }}
+          />
+          <GridResizerElement />
           <GridAlignedBox>
             <Text>Hello2</Text>
           </GridAlignedBox>
@@ -63,9 +75,7 @@ const CoreView: React.FC = () => {
               <Anchor href="#">Link</Anchor>
             </Box>
             <Box height="xxsmall" width="fit" direction="row" align="center" pad="small">
-              <Text weight="bold" color="brand">
-                Overlayed
-              </Text>
+              <Logo />
             </Box>
           </Stack>
         </Collapsible>

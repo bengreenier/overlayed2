@@ -22,7 +22,7 @@ const defaultPosState = -1
 
 const GridAlignedBox: React.FC<Props> = (props: Props) => {
   // observe the current size of the grid
-  const { currentSize } = useGrid()
+  const { currentSize, enabled } = useGrid()
 
   // configure two state values (and setters) for our positioning
   // note: the default state is a non-reachable value!!
@@ -94,15 +94,22 @@ const GridAlignedBox: React.FC<Props> = (props: Props) => {
     setTopState(toGrid(currentSize, e.clientY))
   }
 
+  const style: React.CSSProperties = {}
+
+  if (enabled) {
+    style.cursor = 'grab'
+  }
+
   // finally, render the box
   // note: we've bound pointer handlers to allow for the movement
   return (
     <Box
       ref={boxNode}
       {...props}
-      background="light-1"
-      style={{ cursor: 'grab' }}
+      style={style}
       onPointerDown={e => {
+        if (!enabled) return
+
         e.preventDefault()
         e.currentTarget.setPointerCapture(e.pointerId)
         e.currentTarget.onpointermove = snapMove
