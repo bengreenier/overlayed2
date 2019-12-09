@@ -156,7 +156,10 @@ export default class GridView extends React.Component<InitialGridConfig, GridSta
   }
 
   render() {
-    const style: React.CSSProperties = {}
+    const style: React.CSSProperties = {
+      position: 'absolute',
+      overflow: 'hidden',
+    }
 
     if (this.props.enabled) {
       // grid is currentSize - 1, with width of 1 to end with cells of currentSize
