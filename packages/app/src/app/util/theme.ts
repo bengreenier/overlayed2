@@ -1,8 +1,12 @@
 import { dark, base } from 'grommet/themes'
 import { deepMerge } from 'grommet/utils'
 
+// include font data
 import '@openfonts/poppins_all'
 
+/**
+ * Our grommet theme
+ */
 export const theme = deepMerge(
   base,
   deepMerge(dark, {

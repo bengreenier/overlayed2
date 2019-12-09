@@ -1,6 +1,10 @@
 import React from 'react'
 import Base, { ShapeProps } from './Base'
 
+/**
+ * An animated chart
+ * @param props properties
+ */
 export const Chart = (props: ShapeProps) => <Base animation={animData} {...props} />
 
 const animData = {

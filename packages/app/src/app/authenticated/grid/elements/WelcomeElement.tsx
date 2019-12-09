@@ -4,6 +4,11 @@ import { Heading, Paragraph, List } from 'grommet'
 import { useAuth } from '../../../context/Auth'
 import { ElementComponentProps } from '../../../context/Element'
 
+/**
+ * Info for the current system hotkeys
+ *
+ * TODO(bengreenier): make a hotkey manager and refactor this out
+ */
 const hotkeyInfo = [
   { key: 'Ctrl+Space', desc: 'Show/Hide the menu' },
   { key: 'Ctrl+Shift+Space', desc: 'Show/Hide the grid' },
@@ -12,9 +17,14 @@ const hotkeyInfo = [
   { key: 'Ctrl+Shift+<', desc: 'Scale down the grid' },
 ]
 
+/**
+ * A welcome component with some basic introduction content
+ * @param props properties
+ */
 const WelcomeElement: React.FC<ElementComponentProps> = (
   props: ElementComponentProps
 ) => {
+  // we personalize this view with user info
   const { user } = useAuth()
 
   return (

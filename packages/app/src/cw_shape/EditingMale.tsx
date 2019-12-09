@@ -1,6 +1,10 @@
 import React from 'react'
 import Base, { ShapeProps } from './Base'
 
+/**
+ * A male editing
+ * @param props properties
+ */
 export const EditingMale = (props: ShapeProps) => <Base animation={animData} {...props} />
 
 const animData = {

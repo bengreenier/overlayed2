@@ -4,29 +4,45 @@ import Avatar from './chrome/Avatar'
 import { useAuth } from '../context/Auth'
 import GridView from './grid/GridView'
 import { theme } from '../util/theme'
-import GridResizerElement from './grid/elements/GridResizerElement'
-import ClockElement from './grid/elements/ClockElement'
-import GridAlignedBox from './grid/GridAlignedBox'
 import Logo from './chrome/Logo'
 import BasicRemoteElement from './grid/elements/BasicRemoteElement'
 import WelcomeElement from './grid/elements/WelcomeElement'
 import { useElements } from '../context/Element'
 
+/**
+ * Checks if a space key event is the menu toggle event
+ * @param e key event
+ */
 const isMenuToggle = (e: React.KeyboardEvent<HTMLElement>) => {
   return e.ctrlKey && !e.shiftKey
 }
 
+/**
+ * Checks if a space key event is the grid toggle evnet
+ * @param e key event
+ */
 const isGridToggle = (e: React.KeyboardEvent<HTMLElement>) => {
   return e.ctrlKey && e.shiftKey
 }
 
+/**
+ * The core view of the authenticated experience
+ *
+ * Resposible for loading the menu, grid, and elements
+ */
 const CoreView: React.FC = () => {
+  // we'll need some state for our toggles
+  // in this case, menu and grid
   const [showMenu, setShowMenu] = useState<boolean>(false)
   const [showGrid, setShowGrid] = useState<boolean>(false)
 
+  // we consume some context...
+  // auth lets us know about the user context we're running in
+  // elements lets us know about the elements (overlays) we can run
   const { user } = useAuth()
   const { elements } = useElements()
 
+  // TODO(bengreenier): break this up a bit - theres too much going on here
   return (
     <Keyboard
       target="document"

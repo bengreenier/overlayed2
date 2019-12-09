@@ -5,6 +5,9 @@ import { AlignSelfType, GridAreaType, MarginType, FillType, GapType } from 'grom
 import debounce from 'lodash/debounce'
 import { ElementComponentProps, useElements } from '../../context/Element'
 
+/**
+ * The BoxProp positions that this Box overrides
+ */
 interface PositionBasedBoxProps {
   alignSelf?: AlignSelfType
   gridArea?: GridAreaType
@@ -15,19 +18,37 @@ interface PositionBasedBoxProps {
   responsive?: boolean
 }
 
+/**
+ * Properties for a GridAlignedBox
+ */
 type Props = React.PropsWithChildren<
   Omit<BoxProps, keyof PositionBasedBoxProps> & ElementComponentProps
 >
 
+/**
+ * Helper to align a position to a size
+ * @param currentSize the current grid size
+ * @param val the current position value
+ */
 const toGrid = (currentSize: number, val: number) =>
   Math.round(val / currentSize) * currentSize
 
+/**
+ * The default and invalid initial data for position data
+ */
 const defaultPosState = -1
 
+/**
+ * A debounced function caller used to assist in position layout saving
+ */
 const saveDebouncer = debounce((saver, name, pos) => {
   saver(name, pos)
 }, 300)
 
+/**
+ * A grid aligned box
+ * @param props properties
+ */
 const GridAlignedBox: React.FC<Props> = (props: Props) => {
   // observe the current size of the grid
   const { currentSize, enabled } = useGrid()

@@ -7,9 +7,16 @@ import { theme } from '../../../util/theme'
 import GridAlignedBox from '../GridAlignedBox'
 import { ElementComponentProps } from '../../../context/Element'
 
+/**
+ * A grid-resize component
+ *
+ * Note: this is more Proof of Concept than actual value-add
+ * @param props properties
+ */
 const GridResizerElement: React.FC<ElementComponentProps> = (
   props: ElementComponentProps
 ) => {
+  // consume grid state to allow resizing
   const { shrink, grow, enabled } = useGrid()
 
   return (
