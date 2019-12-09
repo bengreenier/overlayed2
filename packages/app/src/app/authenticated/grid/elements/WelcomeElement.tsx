@@ -2,6 +2,7 @@ import React from 'react'
 import GridAlignedBox from '../GridAlignedBox'
 import { Heading, Paragraph, List } from 'grommet'
 import { useAuth } from '../../../context/Auth'
+import { ElementComponentProps } from '../../../context/Element'
 
 const hotkeyInfo = [
   { key: 'Ctrl+Space', desc: 'Show/Hide the menu' },
@@ -11,11 +12,13 @@ const hotkeyInfo = [
   { key: 'Ctrl+Shift+<', desc: 'Scale down the grid' },
 ]
 
-const WelcomeElement: React.FC = () => {
+const WelcomeElement: React.FC<ElementComponentProps> = (
+  props: ElementComponentProps
+) => {
   const { user } = useAuth()
 
   return (
-    <GridAlignedBox background="accent-1" pad="small">
+    <GridAlignedBox background="accent-1" pad="small" uniqueName={props.uniqueName}>
       <Heading level="1" size="smal">{`Welcome, ${user.name}.`}</Heading>
       <Paragraph>
         We're excited to have you onboard. Here's a few things you should know:

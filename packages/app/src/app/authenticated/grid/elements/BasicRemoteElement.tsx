@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Text } from 'grommet'
 import GridAlignedBox from '../GridAlignedBox'
+import { ElementComponentProps } from '../../../context/Element'
 
-interface Props {
+interface Props extends ElementComponentProps {
   url: string
   innerProps?: any
 }
@@ -39,7 +40,11 @@ const BasicRemoteElement: React.FC<Props> = (props: Props) => {
     initModule()
   })
 
-  return <GridAlignedBox>{remoteAlloc.allocate(React, React.version)}</GridAlignedBox>
+  return (
+    <GridAlignedBox uniqueName={props.uniqueName}>
+      {remoteAlloc.allocate(React, React.version)}
+    </GridAlignedBox>
+  )
 }
 
 export default BasicRemoteElement

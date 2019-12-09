@@ -5,12 +5,16 @@ import { ReactComponent as AddCircleOutline } from 'ionicons/dist/collection/ico
 import { ReactComponent as RemoveCircleOutline } from 'ionicons/dist/collection/icon/svg/md-remove-circle-outline.svg'
 import { theme } from '../../../util/theme'
 import GridAlignedBox from '../GridAlignedBox'
+import { ElementComponentProps } from '../../../context/Element'
 
-const GridResizerElement: React.FC = () => {
+const GridResizerElement: React.FC<ElementComponentProps> = (
+  props: ElementComponentProps
+) => {
   const { shrink, grow, enabled } = useGrid()
 
   return (
     <GridAlignedBox
+      uniqueName={props.uniqueName}
       pad="small"
       width="xxsmall"
       background={{ color: 'accent-1', opacity: 0.6 }}

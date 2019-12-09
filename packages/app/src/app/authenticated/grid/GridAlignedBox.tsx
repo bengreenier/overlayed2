@@ -2,6 +2,8 @@ import React, { useRef, useEffect, useState } from 'react'
 import { BoxProps, Box } from 'grommet'
 import { useGrid } from './GridView'
 import { AlignSelfType, GridAreaType, MarginType, FillType, GapType } from 'grommet/utils'
+import debounce from 'lodash/debounce'
+import { ElementComponentProps, useElements } from '../../context/Element'
 
 interface PositionBasedBoxProps {
   alignSelf?: AlignSelfType
@@ -13,16 +15,23 @@ interface PositionBasedBoxProps {
   responsive?: boolean
 }
 
-type Props = React.PropsWithChildren<Omit<BoxProps, keyof PositionBasedBoxProps>>
+type Props = React.PropsWithChildren<
+  Omit<BoxProps, keyof PositionBasedBoxProps> & ElementComponentProps
+>
 
 const toGrid = (currentSize: number, val: number) =>
   Math.round(val / currentSize) * currentSize
 
 const defaultPosState = -1
 
+const saveDebouncer = debounce((saver, name, pos) => {
+  saver(name, pos)
+}, 300)
+
 const GridAlignedBox: React.FC<Props> = (props: Props) => {
   // observe the current size of the grid
   const { currentSize, enabled } = useGrid()
+  const { savePosition, loadPosition } = useElements()
 
   // configure two state values (and setters) for our positioning
   // note: the default state is a non-reachable value!!
@@ -36,19 +45,27 @@ const GridAlignedBox: React.FC<Props> = (props: Props) => {
   // this means it runs once (after first render), and then only again if the dom element
   // itself changes
   useEffect(() => {
-    if (!boxNode || !boxNode.current) {
-      return
-    }
+    // see if we have position data for the element
+    loadPosition(props.uniqueName).then(
+      pos => {
+        // if we do, use that
+        setLeftState(toGrid(currentSize, pos.left))
+        setTopState(toGrid(currentSize, pos.top))
+      },
+      () => {
+        // if we don't, see if we have the actual element mounted
+        if (boxNode && boxNode.current) {
+          // if we do, get the actual bb of the element
+          const boxBB = boxNode.current.getBoundingClientRect()
 
-    // get the actual bb of the element
-    const boxBB = boxNode.current.getBoundingClientRect()
-
-    // save the left and top values. despite using setters, react will diff these values
-    // for us, so the values `leftState` and `topState` only actually change if they do
-    // not match the previous values
-    setLeftState(toGrid(currentSize, boxBB.left))
-    setTopState(toGrid(currentSize, boxBB.top))
-
+          // save the left and top values. despite using setters, react will diff these values
+          // for us, so the values `leftState` and `topState` only actually change if they do
+          // not match the previous values
+          setLeftState(toGrid(currentSize, boxBB.left))
+          setTopState(toGrid(currentSize, boxBB.top))
+        }
+      }
+    )
     // We must not run this effect when currentSize changes, as we want to pin our box
     // regardless of size changes. therefore, we must ignore the linter complaining that
     // `currentSize` should be in deps
@@ -63,7 +80,7 @@ const GridAlignedBox: React.FC<Props> = (props: Props) => {
     // an event for each new render where leftState and topState are their initial value
     // since we can determine that value to be invalid, we can disregard this change.
     //
-    // without the ability to do so, our diff logical rubberbands from 0 <=> correct value
+    // without the ability to do so, our diff logic rubberbands from 0 <=> correct value
     if (
       !boxNode ||
       !boxNode.current ||
@@ -79,7 +96,12 @@ const GridAlignedBox: React.FC<Props> = (props: Props) => {
     // but now, on the grid
     boxNode.current.style.left = `${leftState}px`
     boxNode.current.style.top = `${topState}px`
-  }, [leftState, topState])
+
+    saveDebouncer(savePosition, props.uniqueName, {
+      left: leftState,
+      top: topState,
+    })
+  }, [leftState, topState, props.uniqueName])
 
   // our snap handler that enforces grid positioning
   // we'll bind this during the move to snap moving

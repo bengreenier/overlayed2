@@ -10,6 +10,7 @@ import GridAlignedBox from './grid/GridAlignedBox'
 import Logo from './chrome/Logo'
 import BasicRemoteElement from './grid/elements/BasicRemoteElement'
 import WelcomeElement from './grid/elements/WelcomeElement'
+import { useElements } from '../context/Element'
 
 const isMenuToggle = (e: React.KeyboardEvent<HTMLElement>) => {
   return e.ctrlKey && !e.shiftKey
@@ -24,6 +25,7 @@ const CoreView: React.FC = () => {
   const [showGrid, setShowGrid] = useState<boolean>(false)
 
   const { user } = useAuth()
+  const { elements } = useElements()
 
   return (
     <Keyboard
@@ -42,22 +44,10 @@ const CoreView: React.FC = () => {
           maxScale={100}
           color={theme.global.colors['dark-4'] as string}
         >
-          <WelcomeElement />
-          <ClockElement />
-          <BasicRemoteElement
-            url="https://cdn.jsdelivr.net/gh/overlayed-app/remote-overlay-test@1.1.0/index.js"
-            innerProps={{ name: user.name }}
-          />
-          <GridResizerElement />
-          <GridAlignedBox>
-            <Text>Hello2</Text>
-          </GridAlignedBox>
-          <GridAlignedBox>
-            <Text>Hello3</Text>
-          </GridAlignedBox>
-
-          {/* <GridResizerElement />
-          <ClockElement /> */}
+          {elements.map(e => {
+            return <BasicRemoteElement key={e.name} uniqueName={e.name} url={e.url} />
+          })}
+          <WelcomeElement uniqueName="welcome-1" />
         </GridView>
       </Box>
       <Box fill="horizontal" style={{ position: 'absolute', top: 0 }}>
