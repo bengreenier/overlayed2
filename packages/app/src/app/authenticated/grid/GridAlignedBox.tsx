@@ -122,7 +122,7 @@ const GridAlignedBox: React.FC<Props> = (props: Props) => {
       left: leftState,
       top: topState,
     })
-  }, [leftState, topState, props.uniqueName])
+  }, [leftState, topState, props.uniqueName, savePosition])
 
   // our snap handler that enforces grid positioning
   // we'll bind this during the move to snap moving

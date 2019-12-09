@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Stack, Box, Keyboard, Anchor, Collapsible, Text } from 'grommet'
+import { Stack, Box, Keyboard, Anchor, Collapsible } from 'grommet'
 import Avatar from './chrome/Avatar'
 import { useAuth } from '../context/Auth'
 import GridView from './grid/GridView'
