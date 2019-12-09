@@ -4,11 +4,12 @@ import Avatar from './chrome/Avatar'
 import { useAuth } from '../context/Auth'
 import GridView from './grid/GridView'
 import { theme } from '../util/theme'
-import GridResizerElement from './grid/GridResizerElement'
-import ClockElement from './grid/ClockElement'
+import GridResizerElement from './grid/elements/GridResizerElement'
+import ClockElement from './grid/elements/ClockElement'
 import GridAlignedBox from './grid/GridAlignedBox'
 import Logo from './chrome/Logo'
-import BasicRemoteElement from './grid/BasicRemoteElement'
+import BasicRemoteElement from './grid/elements/BasicRemoteElement'
+import WelcomeElement from './grid/elements/WelcomeElement'
 
 const isMenuToggle = (e: React.KeyboardEvent<HTMLElement>) => {
   return e.ctrlKey && !e.shiftKey
@@ -41,10 +42,11 @@ const CoreView: React.FC = () => {
           maxScale={100}
           color={theme.global.colors['dark-4'] as string}
         >
+          <WelcomeElement />
           <ClockElement />
           <BasicRemoteElement
             url="https://cdn.jsdelivr.net/gh/overlayed-app/remote-overlay-test@1.1.0/index.js"
-            innerProps={{ name: 'ben' }}
+            innerProps={{ name: user.name }}
           />
           <GridResizerElement />
           <GridAlignedBox>

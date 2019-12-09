@@ -1,10 +1,10 @@
 import React from 'react'
-import { useGrid } from './GridView'
+import { useGrid } from '../GridView'
 import { Button } from 'grommet'
 import { ReactComponent as AddCircleOutline } from 'ionicons/dist/collection/icon/svg/md-add-circle-outline.svg'
 import { ReactComponent as RemoveCircleOutline } from 'ionicons/dist/collection/icon/svg/md-remove-circle-outline.svg'
-import { theme } from '../../util/theme'
-import GridAlignedBox from './GridAlignedBox'
+import { theme } from '../../../util/theme'
+import GridAlignedBox from '../GridAlignedBox'
 
 const GridResizerElement: React.FC = () => {
   const { shrink, grow, enabled } = useGrid()

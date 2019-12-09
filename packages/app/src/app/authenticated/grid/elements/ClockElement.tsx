@@ -1,6 +1,6 @@
 import React from 'react'
 import { Clock } from 'grommet'
-import GridAlignedBox from './GridAlignedBox'
+import GridAlignedBox from '../GridAlignedBox'
 
 const ClockElement: React.FC = () => (
   <GridAlignedBox

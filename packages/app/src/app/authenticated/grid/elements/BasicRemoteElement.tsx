@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Text } from 'grommet'
-import GridAlignedBox from './GridAlignedBox'
+import GridAlignedBox from '../GridAlignedBox'
 
 interface Props {
   url: string
